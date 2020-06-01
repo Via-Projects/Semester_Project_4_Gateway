@@ -1,4 +1,4 @@
-package gateway.websocket;
+package gateway.socket;
 
 import lombok.*;
 
