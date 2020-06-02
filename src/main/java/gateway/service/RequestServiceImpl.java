@@ -19,11 +19,11 @@ public class RequestServiceImpl implements RequestService {
         log.info("Extracting MeasurementValues from dataPacket ...");
         MeasurementValues valuesToPost = getValuesFromDataPacket(dataPacket);
         RestTemplate restTemplate = new RestTemplate();
-        log.info("Making a POST request to Database with values: \n\n\t_____________________" + valuesToPost);
+        log.info("Making a POST request to Database with values: " + valuesToPost);
         return restTemplate.postForObject(API_URL, valuesToPost, Boolean.class);
     }
 
-    private MeasurementValues getValuesFromDataPacket(DataPacket dataPacket)
+    public MeasurementValues getValuesFromDataPacket(DataPacket dataPacket)
     {
         String CO2HexLow = dataPacket.getData().substring(0,2);
         String CO2HexHigh = dataPacket.getData().substring(2,4);

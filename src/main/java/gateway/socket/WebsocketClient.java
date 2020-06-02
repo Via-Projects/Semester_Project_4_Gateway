@@ -72,7 +72,7 @@ public class WebsocketClient implements WebSocket.Listener {
         log.info("onText invoked");
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            log.info(data.toString());
+            log.info("JSON data: " + data.toString());
             DataPacket receivedDataPacket = objectMapper.readValue(data.toString(), DataPacket.class);
             log.info("Received data packet: " + receivedDataPacket);
             requestService.postMeasurementValues(receivedDataPacket);
