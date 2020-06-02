@@ -16,6 +16,7 @@ public class Runner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        websocketClient.start("wss://iotnet.teracom.dk/app?token=vnoSxwAAABFpb3RuZXQudGVyYWNvbS5ka1XN9jtj-hrHpSJ1cKRNYRg=");
+        String webSocketURL = "wss://iotnet.teracom.dk/app?token=vnoSxwAAABFpb3RuZXQudGVyYWNvbS5ka1XN9jtj-hrHpSJ1cKRNYRg=";
+        websocketClient.start(webSocketURL);
     }
 }

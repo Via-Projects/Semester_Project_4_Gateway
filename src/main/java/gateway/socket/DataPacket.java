@@ -1,12 +1,12 @@
 package gateway.socket;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
-@Getter
-@Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
-@ToString
 @AllArgsConstructor
+@Data
 public class DataPacket {
     private String data;
 }
