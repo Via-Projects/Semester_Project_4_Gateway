@@ -1,13 +1,13 @@
 package gateway.service;
 
+import gateway.model.DataPacketException;
 import gateway.model.MeasurementValues;
 import gateway.socket.DataPacket;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.LoggerFactory;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.logging.Logger;
 
 @Service
 @Slf4j
@@ -25,6 +25,12 @@ public class RequestServiceImpl implements RequestService {
 
     public MeasurementValues getValuesFromDataPacket(DataPacket dataPacket)
     {
+        if (dataPacket.getData().length() != 8){
+            String message = "Data packet wrong size: " + dataPacket.getData().length();
+            log.error(message);
+            throw new DataPacketException(message);
+        }
+
         String CO2HexLow = dataPacket.getData().substring(0,2);
         String CO2HexHigh = dataPacket.getData().substring(2,4);
         String tempHex = dataPacket.getData().substring(4,6);
